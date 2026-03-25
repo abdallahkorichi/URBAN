@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply transition-colors duration-300 min-h-screen bg-base-100 text-base-content;
+}
+
+/* Glassmorphism Classes - Standardized for DaisyUI */
+.glass-card {
+  @apply backdrop-blur-xl border shadow-2xl bg-base-100/70 dark:bg-base-100/40 border-base-content/10 dark:border-white/5;
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-base-content/20 rounded-full hover:bg-base-content/30 transition-colors;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Helper to ensure urban bg stays subtle */
+.urban-pattern {
+  @apply absolute inset-0 opacity-[0.03] dark:opacity-[0.1] pointer-events-none;
+  background-image: url(/assets/urban-bg.png);
+  background-size: 400px;
+}
