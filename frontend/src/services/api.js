@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  // Use the environment variable for deployment, fallback to localhost for local dev
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
+  // Use relative '/api' path when deployed, fallback to localhost for local development
+  baseURL: import.meta.env.PROD ? "/api" : "http://localhost:5000/api",
 });
 
 api.interceptors.request.use(
