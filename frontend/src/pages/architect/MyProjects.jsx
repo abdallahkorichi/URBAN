@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CheckCircle, FileText, BadgeCheck, Download } from "lucide-react";
-import api from "../../services/api";
+import api, { getFileUrl } from "../../services/api";
 import EmptyState from "../../components/ui/EmptyState";
 
 function MyProjects() {
@@ -89,9 +89,9 @@ function MyProjects() {
 
                 <div className="flex items-center justify-between pt-6 border-t border-base-content/10 italic">
                    <a 
-                    href={`http://localhost:5000/${project.pdf}`}
-                    target="_blank"
-                    rel="noreferrer"
+                    href={getFileUrl(project.pdf)}
+                     target="_blank"
+                     rel="noreferrer"
                     className="flex items-center gap-2 text-xs font-bold text-base-content/40 hover:text-primary transition"
                    >
                      <FileText size={14} />

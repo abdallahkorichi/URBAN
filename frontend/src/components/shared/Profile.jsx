@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import api from "../../services/api";
+import api, { getFileUrl } from "../../services/api";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -16,7 +16,7 @@ function Profile() {
       setUser(parsedUser);
       setName(parsedUser.name || "");
       if (parsedUser.profilePic) {
-        setPreview(`http://localhost:5000/${parsedUser.profilePic}`);
+        setPreview(getFileUrl(parsedUser.profilePic));
       }
     }
   }, []);

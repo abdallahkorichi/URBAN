@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, LogOut, ChevronDown } from "lucide-react";
+import { getFileUrl } from "../../services/api";
 
 function AvatarDropdown() {
   const [open, setOpen] = useState(false);
@@ -36,7 +37,7 @@ function AvatarDropdown() {
       >
         <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center overflow-hidden">
           {user?.profilePic ? (
-            <img src={`http://localhost:5000/${user.profilePic}`} alt="avatar" className="w-full h-full object-cover" />
+            <img src={getFileUrl(user.profilePic)} alt="avatar" className="w-full h-full object-cover" />
           ) : (
             <User size={18} />
           )}

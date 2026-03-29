@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { CheckCircle, FileText, ChevronDown, ChevronUp } from "lucide-react";
-import api from "../../services/api";
+import api, { getFileUrl } from "../../services/api";
 
 function AllProjects() {
   const [projects, setProjects] = useState([]);
@@ -113,7 +113,7 @@ function AllProjects() {
                           </div>
                           
                           <a 
-                            href={`http://localhost:5000/${project.pdf}`} 
+                            href={getFileUrl(project.pdf)} 
                             target="_blank" 
                             rel="noreferrer"
                             className="btn btn-neutral btn-lg flex-1 rounded-2xl font-black normal-case gap-3 shadow-lg"
