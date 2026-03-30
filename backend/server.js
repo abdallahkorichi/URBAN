@@ -24,8 +24,7 @@ app.use(
   })
 );
 app.use(express.json());
-// Serve static files from the "uploads" directory
-app.use("/uploads", express.static("uploads"));
+// Local uploads are disabled (using Cloudinary now)
 // Routes for authentication and project management
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
