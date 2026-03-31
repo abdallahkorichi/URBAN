@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import Logo from "../../components/shared/Logo";
 import api from "../../services/api.js";
 import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,6 +20,7 @@ function Login() {
       return;
     }
     try {
+      setLoading(true);
       const res = await api.post("/auth/login", {
         email,
         password,
@@ -36,6 +39,8 @@ function Login() {
     } catch (error) {
       toast.error(error.response?.data?.message || "Login Failed");
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -93,9 +98,10 @@ function Login() {
             {/* Button */}
             <button
               type="submit"
-              className="w-full bg-[#C2A97F] text-white py-3 rounded-xl font-medium hover:bg-[#9C7B52] transition"
+              disabled={loading}
+              className="w-full bg-[#C2A97F] text-white py-3 rounded-xl font-medium hover:bg-[#9C7B52] transition flex justify-center items-center disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Login
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Login"}
             </button>
           </form>
 

@@ -10,7 +10,7 @@ function EmptyState({
   const navigate = useNavigate();
   return (
     <div className="flex items-center justify-center h-[70vh]">
-      <div className="bg-white p-10 rounded-2xl shadow-md text-center max-w-md w-full border">
+      <div className="bg-base-100 p-10 rounded-2xl shadow-xl text-center max-w-md w-full border border-base-content/10">
 
         {Icon && (
           <div className="flex justify-center mb-4 text-primary">
@@ -18,11 +18,11 @@ function EmptyState({
           </div>
         )}
 
-        <h2 className="text-xl font-bold mb-2">
+        <h2 className="text-xl font-bold mb-2 text-base-content">
           {title}
         </h2>
 
-        <p className="text-gray-600 mb-6">
+        <p className="text-base-content/70 mb-6 font-medium">
           {description}
         </p>
 

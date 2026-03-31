@@ -77,59 +77,59 @@ function NotificationDropdown() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-full transition-colors focus:outline-none"
+        className="relative p-2 text-base-content/50 hover:bg-base-content/5 hover:text-base-content rounded-xl transition-all focus:outline-none"
       >
         <Bell size={24} />
         {unreadCount > 0 && (
-          <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white shadow-sm ring-2 ring-white">
+          <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-[10px] font-bold text-white shadow-sm ring-2 ring-base-100">
             {unreadCount > 9 ? "9+" : unreadCount}
           </span>
         )}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-3 w-80 lg:w-96 rounded-2xl bg-white shadow-xl ring-1 ring-black ring-opacity-5 z-50 overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-gray-50/50">
-            <h3 className="font-bold text-gray-900">Notifications</h3>
+        <div className="absolute right-0 mt-3 w-80 lg:w-96 rounded-2xl bg-base-100 shadow-xl border border-base-content/10 z-50 overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-base-content/5 bg-base-200/50">
+            <h3 className="font-bold text-base-content">Notifications</h3>
             {unreadCount > 0 && (
               <button 
                 onClick={markAllAsRead}
-                className="text-xs font-semibold text-blue-600 hover:text-blue-800 transition"
+                className="text-xs font-semibold text-primary hover:text-primary transition"
               >
                 Mark all as read
               </button>
             )}
           </div>
 
-          <div className="max-h-[400px] overflow-y-auto custom-scrollbar bg-white">
+          <div className="max-h-[400px] overflow-y-auto custom-scrollbar bg-base-100">
             {notifications.length === 0 ? (
-              <div className="p-8 text-center text-gray-500">
-                <Bell size={32} className="mx-auto text-gray-200 mb-3" />
+              <div className="p-8 text-center text-base-content/40">
+                <Bell size={32} className="mx-auto text-base-content/20 mb-3" />
                 <p className="text-sm font-medium">No notifications yet</p>
               </div>
             ) : (
-              <div className="divide-y divide-gray-50">
+              <div className="divide-y divide-base-content/5">
                 {notifications.map((notification) => (
                   <div
                     key={notification._id}
                     onClick={() => handleMarkAsRead(notification._id, notification.isRead)}
-                    className={`p-4 hover:bg-gray-50 transition cursor-pointer flex gap-4 ${
-                      !notification.isRead ? "bg-blue-50/30" : ""
+                    className={`p-4 hover:bg-base-200/50 transition cursor-pointer flex gap-4 ${
+                      !notification.isRead ? "bg-primary/5" : ""
                     }`}
                   >
                     <div className="shrink-0 pt-1">
                       {notification.isRead ? (
-                        <Check size={18} className="text-gray-400" />
+                        <Check size={18} className="text-base-content/30" />
                       ) : (
-                        <div className="h-2.5 w-2.5 mt-1 rounded-full bg-blue-500 shadow-sm" />
+                        <div className="h-2.5 w-2.5 mt-1 rounded-full bg-primary shadow-sm" />
                       )}
                     </div>
                     
                     <div className="flex-1 space-y-1">
-                      <p className={`text-sm ${notification.isRead ? "text-gray-600 font-medium" : "text-gray-900 font-bold"}`}>
+                      <p className={`text-sm ${notification.isRead ? "text-base-content/70 font-medium" : "text-base-content font-bold"}`}>
                         {notification.message}
                       </p>
-                      <div className="flex items-center text-xs text-gray-400 font-medium">
+                      <div className="flex items-center text-xs text-base-content/40 font-medium">
                         <Clock size={12} className="mr-1" />
                         {formatTime(notification.createdAt)}
                       </div>
@@ -141,8 +141,8 @@ function NotificationDropdown() {
           </div>
           
           {/* Footer just for aesthetic polish */}
-          <div className="px-4 py-2 border-t border-gray-100 bg-gray-50 text-center">
-             <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-widest">Office Communications</p>
+          <div className="px-4 py-2 border-t border-base-content/5 bg-base-200/50 text-center">
+             <p className="text-[10px] text-base-content/40 font-semibold uppercase tracking-widest">Office Communications</p>
           </div>
         </div>
       )}

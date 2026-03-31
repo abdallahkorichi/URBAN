@@ -50,20 +50,20 @@ function AvatarDropdown() {
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 mt-3 w-48 bg-white shadow-lg rounded-lg border z-50">
+        <div className="absolute right-0 mt-3 w-48 bg-base-100 shadow-xl rounded-xl border border-base-content/10 z-50 overflow-hidden">
           <button
             onClick={() => {
               navigate(`/${user.role}/profile`);
               setOpen(false);
             }}
-            className="w-full text-left px-4 py-2 hover:bg-gray-100"
+            className="w-full text-left px-4 py-3 text-base-content font-bold hover:bg-base-200 transition-colors"
           >
             Profile
           </button>
 
           <button
             onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100 flex items-center gap-2"
+            className="w-full text-left px-4 py-3 text-error font-bold hover:bg-error/10 hover:text-error flex items-center gap-2 transition-colors border-t border-base-content/5"
           >
             <LogOut size={16} />
             Logout

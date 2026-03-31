@@ -3,11 +3,13 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../components/shared/Logo";
 import api from "../../services/api.js";
+import { Loader2 } from "lucide-react";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,6 +20,7 @@ function Register() {
       return;
     }
     try {
+      setLoading(true);
       const res = await api.post("/auth/register", {
         name,
         email,
@@ -33,6 +36,8 @@ function Register() {
     } catch (error) {
       toast.error(error.response?.data?.message || "Registration Failed");
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -104,9 +109,10 @@ function Register() {
             {/* Button */}
             <button
               type="submit"
-              className="w-full bg-[#C2A97F] text-white py-3 rounded-xl font-medium hover:bg-[#9C7B52] transition"
+              disabled={loading}
+              className="w-full bg-[#C2A97F] text-white py-3 rounded-xl font-medium hover:bg-[#9C7B52] transition flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Register
+              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Register"}
             </button>
           </form>
 
