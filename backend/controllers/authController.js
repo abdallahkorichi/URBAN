@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import sendEmail from "../utils/sendEmail.js";
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -26,6 +27,14 @@ export const registerUser = async (req, res) => {
       password: hashedPassword,
       role: "architect",
     });
+    
+    // Dispatch Welcome Email asynchronously so it doesnt block the response
+    sendEmail(
+      user.email,
+      "Welcome to KOUTHBAN Platform",
+      `Hello ${user.name},\n\nYour architect account has been successfully created. Welcome to the KOUTHBAN platform! You can now submit your projects for review.\n\nBest,\nKOUTHBAN Team`
+    ).catch(err => console.error("Welcome email failed to send", err));
+
     // Respond with the user's details and a JWT token upon successful registration
     res.status(201).json({
       _id: user._id,
@@ -45,6 +54,14 @@ export const loginUser = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
+      
+      // Dispatch explicit login notification asynchronously
+      sendEmail(
+        user.email,
+        "New Login to KOUTHBAN",
+        `Hello ${user.name},\n\nA new login was detected on your KOUTHBAN account. If this was you, you can safely ignore this email.\n\nBest,\nKOUTHBAN Security`
+      ).catch(err => console.error("Login alert email failed to send", err));
+
       res.json({
         token: generateToken(user._id),
         user: {

@@ -74,7 +74,7 @@ function Login() {
               <label className="block text-sm mb-2 text-[#3E2F1C]">Email</label>
               <input
                 type="email"
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#C2A97F]"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-[#3E2F1C] focus:outline-none focus:ring-2 focus:ring-[#C2A97F]"
                 placeholder="example@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +88,7 @@ function Login() {
               </label>
               <input
                 type="password"
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#C2A97F]"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-[#3E2F1C] focus:outline-none focus:ring-2 focus:ring-[#C2A97F]"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

@@ -10,7 +10,7 @@ const sendEmail = async (to, subject, text) => {
   });
 
   const mailOptions = {
-    from: `"Urban Office" <${process.env.EMAIL_USER}>`,
+    from: `"KOUTHBAN Platform" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     text,
