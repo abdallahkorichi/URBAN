@@ -11,7 +11,7 @@ function Logo() {
         />
       </div>
       <span className="text-xl font-black text-base-content tracking-tight">
-        Desert <span className="text-primary">Urban</span>
+        KHOUTHBAN
       </span>
     </Link>
   );

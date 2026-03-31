@@ -70,7 +70,7 @@ function DashboardLayout() {
           collapsed ? "w-20" : "w-72"
         }`}
       >
-        <div className="flex items-center justify-between p-6 border-b border-base-content/5">
+        <div className="h-20 flex items-center justify-between px-6 border-b border-base-content/5">
           {!collapsed && <Logo />}
           <button 
             onClick={() => setCollapsed(!collapsed)}
@@ -124,7 +124,7 @@ function DashboardLayout() {
       {/* ================= Main Content ================= */}
       <div className="flex-1 flex flex-col relative z-10 w-full">
         {/* Header */}
-        <header className="glass-card rounded-none border-x-0 border-t-0 px-8 py-5 flex justify-between items-center sticky top-0 z-30">
+        <header className="glass-card rounded-none border-x-0 border-t-0 h-20 px-8 flex justify-between items-center sticky top-0 z-30">
           <h1 className="text-xl font-black text-base-content tracking-tight">
             {isArchitect ? "Architect Dashboard" : "Quality Assurance Office"}
           </h1>

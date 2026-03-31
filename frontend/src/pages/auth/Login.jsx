@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import Logo from "../../components/shared/Logo";
 import api from "../../services/api.js";
 import { useNavigate } from "react-router-dom";
 
@@ -43,18 +44,21 @@ function Login() {
       {/* LEFT SIDE */}
       <div className="hidden md:flex flex-col justify-center px-16 bg-gradient-to-br from-[#F5EFE6] via-[#E8DFD0] to-[#D8CCB8]">
         <h1 className="text-4xl font-bold text-[#3E2F1C]">
-          Desert Urban Platform
+          KHOUTHBAN Platform
         </h1>
 
         <p className="mt-6 text-[#5C4B37] max-w-md">
           Secure access for architects and studies offices to manage structured
-          desert urban planning submissions.
+          KHOUTHBAN planning submissions.
         </p>
       </div>
 
       {/* RIGHT SIDE */}
       <div className="flex items-center justify-center px-6">
         <div className="w-full max-w-md bg-white p-10 rounded-3xl shadow-xl">
+          <div className="flex justify-center mb-6">
+            <Logo />
+          </div>
           <h2 className="text-2xl font-bold text-center text-[#3E2F1C]">
             Login
           </h2>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import Logo from "../../components/shared/Logo";
 import api from "../../services/api.js";
 
 function Register() {
@@ -40,11 +41,11 @@ function Register() {
       {/* LEFT SIDE */}
       <div className="hidden md:flex flex-col justify-center px-16 bg-gradient-to-br from-[#F5EFE6] via-[#E8DFD0] to-[#D8CCB8]">
         <h1 className="text-4xl font-bold text-[#3E2F1C]">
-          Desert Urban Platform
+          KHOUTHBAN Platform
         </h1>
 
         <p className="mt-6 text-[#5C4B37] max-w-md">
-          Join the platform to submit and manage structured desert urban
+          Join the platform to submit and manage structured KHOUTHBAN
           planning projects with ease.
         </p>
       </div>
@@ -52,6 +53,9 @@ function Register() {
       {/* RIGHT SIDE */}
       <div className="flex items-center justify-center px-6">
         <div className="w-full max-w-md bg-white p-10 rounded-3xl shadow-xl">
+          <div className="flex justify-center mb-6">
+            <Logo />
+          </div>
           <h2 className="text-2xl font-bold text-center text-[#3E2F1C]">
             Create an Account
           </h2>

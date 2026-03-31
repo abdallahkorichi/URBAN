@@ -40,7 +40,7 @@ function Featers() {
               Compliance Tracking
             </h3>
             <p className="mt-4 text-sm text-gray-600">
-              Maintain regulatory alignment with desert urban planning standards
+              Maintain regulatory alignment with KHOUTHBAN planning standards
               and policies.
             </p>
           </div>

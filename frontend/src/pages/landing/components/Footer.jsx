@@ -10,7 +10,7 @@ function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-base-content/10">
-                <img src="/assets/logo.png" alt="Desert Urban Logo" className="w-full h-full object-cover" />
+                <img src="/assets/logo.png" alt="KHOUTHBAN Logo" className="w-full h-full object-cover" />
               </div>
               <span className="text-2xl font-black text-base-content tracking-tight">
                 Desert <span className="text-primary">Urban</span>
@@ -46,7 +46,7 @@ function Footer() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-base-content/10 text-xs font-semibold text-base-content/40 uppercase tracking-widest gap-4">
-          <p>© {new Date().getFullYear()} Desert Urban Platform. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} KHOUTHBAN Platform. All rights reserved.</p>
           <div className="flex gap-8 text-base-content/40 cursor-not-allowed">
             <span>Privacy Policy</span>
             <span>Terms of Service</span>

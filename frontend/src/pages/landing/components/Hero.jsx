@@ -15,7 +15,7 @@ function Hero() {
 
           <p className="mt-6 text-lg text-[#5C4B37] max-w-xl">
             A structured digital platform connecting architects and studies
-            offices to simplify desert urban project submission, review, and
+            offices to simplify KHOUTHBAN project submission, review, and
             regulatory compliance.
           </p>
 
