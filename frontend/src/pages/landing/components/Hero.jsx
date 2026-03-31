@@ -10,12 +10,12 @@ function Hero() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#3E2F1C] leading-tight">
             Elevating Urban Design
             <br />
-            Through <span className="text-[#C2A97F]">KHOUTHBAN</span>
+            Through <span className="text-[#C2A97F]">KOUTHBAN</span>
           </h1>
 
           <p className="mt-6 text-lg text-[#5C4B37] max-w-xl">
             A structured digital platform connecting architects and studies
-            offices to simplify KHOUTHBAN project submission, review, and
+            offices to simplify KOUTHBAN project submission, review, and
             regulatory compliance.
           </p>
 

@@ -7,12 +7,12 @@ function Navbar() {
         <div className="w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-base-content/10 group-hover:border-primary/30 transition-colors">
           <img 
             src="/assets/logo.png" 
-            alt="KHOUTHBAN Logo" 
+            alt="KOUTHBAN Logo" 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
         </div>
         <span className="text-2xl font-black text-base-content tracking-tight">
-           KHOUTHBAN
+           KOUTHBAN
         </span>
       </Link>
       <div className="flex items-center gap-4">

@@ -44,12 +44,12 @@ function Login() {
       {/* LEFT SIDE */}
       <div className="hidden md:flex flex-col justify-center px-16 bg-gradient-to-br from-[#F5EFE6] via-[#E8DFD0] to-[#D8CCB8]">
         <h1 className="text-4xl font-bold text-[#3E2F1C]">
-          KHOUTHBAN Platform
+          KOUTHBAN Platform
         </h1>
 
         <p className="mt-6 text-[#5C4B37] max-w-md">
           Secure access for architects and studies offices to manage structured
-          KHOUTHBAN planning submissions.
+          KOUTHBAN planning submissions.
         </p>
       </div>
 

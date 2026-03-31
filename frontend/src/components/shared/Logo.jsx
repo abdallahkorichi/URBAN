@@ -11,7 +11,7 @@ function Logo() {
         />
       </div>
       <span className="text-xl font-black text-base-content tracking-tight">
-        KHOUTHBAN
+        KOUTHBAN
       </span>
     </Link>
   );
