@@ -13,7 +13,7 @@ function Footer() {
                 <img src="/assets/logo.png" alt="KHOUTHBAN Logo" className="w-full h-full object-cover" />
               </div>
               <span className="text-2xl font-black text-base-content tracking-tight">
-                Desert <span className="text-primary">Urban</span>
+                KHOUTHBAN
               </span>
             </Link>
             <p className="text-base-content/60 text-sm leading-relaxed max-w-md font-medium">
