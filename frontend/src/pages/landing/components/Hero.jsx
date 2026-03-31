@@ -7,10 +7,10 @@ function Hero() {
       <div className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 items-center gap-12">
         {/* LEFT SIDE */}
         <div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#3E2F1C] leading-tight">
-            Smart Urban Planning
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#3E2F1C] leading-tight">
+            Elevating Urban Design
             <br />
-            For Arid Regions
+            Through <span className="text-[#C2A97F]">KHOUTHBAN</span>
           </h1>
 
           <p className="mt-6 text-lg text-[#5C4B37] max-w-xl">
