@@ -2,18 +2,32 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import sendEmail from "../utils/sendEmail.js";
+import { normalizeEmail, isValidEmail } from "../utils/validateEmail.js";
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
 };
+
+// Escape user-controlled strings before embedding into a regex pattern.
+const escapeRegExp = (value) => {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
 // Register architect user
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+
+    const normalizedEmail = normalizeEmail(email);
+    if (!normalizedEmail || !isValidEmail(normalizedEmail)) {
+      return res.status(400).json({ message: "Invalid email address" });
+    }
+
     // Check if a user with the provided email already exists in the database
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({
+      email: { $regex: `^${escapeRegExp(normalizedEmail)}$`, $options: "i" },
+    });
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -23,7 +37,7 @@ export const registerUser = async (req, res) => {
     // Create a new user in the database with the provided name, email, hashed password, and default role of "architect"
     const user = await User.create({
       name,
-      email,
+      email: normalizedEmail,
       password: hashedPassword,
       role: "architect",
     });
@@ -52,7 +66,14 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const normalizedEmail = normalizeEmail(email);
+    if (!normalizedEmail || !isValidEmail(normalizedEmail)) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const user = await User.findOne({
+      email: { $regex: `^${escapeRegExp(normalizedEmail)}$`, $options: "i" },
+    });
     if (user && (await bcrypt.compare(password, user.password))) {
       
       // Dispatch explicit login notification asynchronously
