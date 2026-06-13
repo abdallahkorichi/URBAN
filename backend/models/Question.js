@@ -20,7 +20,11 @@ const questionSchema = mongoose.Schema(
       type: Number,
       default: 1,
     },
+    category: {
+      type: String,
+      required: false,
+    },
   },
-  { Timestamp: true },
+  { timestamps: true },
 );
 export default mongoose.model("Question", questionSchema);

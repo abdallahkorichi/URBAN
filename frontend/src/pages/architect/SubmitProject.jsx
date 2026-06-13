@@ -12,6 +12,29 @@ function SubmitProject() {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("design");
+
+  const categories = [
+    { id: "design",    name: "Design",    icon: "🏛️",  dbName: "Design"    },
+    { id: "shading",   name: "Shading",   icon: "☂️",   dbName: "Shading"   },
+    { id: "materials", name: "Materials", icon: "🧱",   dbName: "Materials" },
+    { id: "nature",    name: "Nature",    icon: "🌿",   dbName: "Nature"    },
+  ];
+
+  const getCategoryQuestions = (dbName) => {
+    return questions.filter(q => q.category === dbName);
+  };
+
+  const isCategoryCompleted = (dbName) => {
+    const catQs = getCategoryQuestions(dbName);
+    if (catQs.length === 0) return false;
+    return catQs.every(q => answers[q._id] !== undefined);
+  };
+
+  const getCategoryAnsweredCount = (dbName) => {
+    const catQs = getCategoryQuestions(dbName);
+    return catQs.filter(q => answers[q._id] !== undefined).length;
+  };
 
   const navigate = useNavigate();
 
@@ -89,11 +112,11 @@ function SubmitProject() {
 
   return (
     <div className="relative min-h-[80vh] flex items-center justify-center p-4">
-      <div className="relative z-10 w-full max-w-4xl">
+      <div className="relative z-10 w-full max-w-8xl">
         <div className="glass-card rounded-[3rem] overflow-hidden relative">
           <div className="urban-pattern absolute inset-0 opacity-5 dark:opacity-10 mix-blend-overlay" />
           
-          <div className="grid lg:grid-cols-12 min-h-[600px]">
+          <div className="grid lg:grid-cols-12 min-h-[680px]">
             
             {/* Sidebar / Progress */}
             <div className="lg:col-span-4 bg-neutral p-10 text-neutral-content flex flex-col justify-between">
@@ -129,7 +152,7 @@ function SubmitProject() {
             </div>
 
             {/* Form Content */}
-            <div className="lg:col-span-8 p-10 lg:p-16 flex flex-col justify-between">
+            <div className="lg:col-span-8 p-10 lg:p-18 flex flex-col justify-between">
               
               <div className="flex-1">
                 {step === 1 && (
@@ -193,37 +216,117 @@ function SubmitProject() {
 
                 {step === 3 && (
                   <div className="animate-in fade-in slide-in-from-right-4 duration-500">
-                    <div className="mb-10 text-center lg:text-left">
-                       <h3 className="text-2xl font-black text-base-content mb-2">Self-Evaluation</h3>
-                       <p className="text-base-content/60 text-sm font-medium italic">Verify your project's alignment with urban specifications.</p>
+
+                    {/* Header + Progress Bar */}
+                    <div className="mb-6">
+                      <div className="flex items-start justify-between gap-4 mb-4">
+                        <div>
+                          <h3 className="text-2xl font-black text-base-content mb-1">Self-Evaluation</h3>
+                          <p className="text-base-content/60 text-xs font-medium italic">Verify your project's alignment with urban and climate-resilience specifications.</p>
+                        </div>
+                        <div className="shrink-0 text-right">
+                          <span className="text-xs font-black text-base-content/50 uppercase tracking-widest">
+                            {Object.keys(answers).length} <span className="text-base-content/25">/</span> 10 Answered
+                          </span>
+                        </div>
+                      </div>
+                      {/* Progress bar */}
+                      <div className="w-full bg-base-content/10 h-1.5 rounded-full overflow-hidden">
+                        <div
+                          className="bg-primary h-full rounded-full transition-all duration-500 ease-out"
+                          style={{ width: `${(Object.keys(answers).length / 10) * 100}%` }}
+                        />
+                      </div>
                     </div>
 
-                    <div className="space-y-6 max-h-[350px] overflow-y-auto pr-4 custom-scrollbar">
-                      {questions.map((q, idx) => (
-                        <div key={q._id} className="bg-base-200/50 border-2 border-base-content/10 rounded-3xl p-6 transition-all focus-within:border-primary/50">
-                          <label className="text-xs font-black text-base-content/40 uppercase tracking-widest mb-4 block">Question {idx + 1}</label>
-                          <p className="text-base-content font-bold text-lg mb-6 leading-tight">{q.question}</p>
-                          <div className="grid sm:grid-cols-2 gap-3">
-                            {q.options.map((option) => (
+                    {/* Category Tabs */}
+                    <div className="flex gap-2 overflow-x-auto pb-3 custom-scrollbar scrollbar-none mb-4">
+                      {categories.map((cat) => {
+                        const isCompleted = isCategoryCompleted(cat.dbName);
+                        const answeredCount = getCategoryAnsweredCount(cat.dbName);
+                        const totalCount = getCategoryQuestions(cat.dbName).length;
+                        const isActive = activeCategory === cat.id;
+
+                        return (
+                          <button
+                            key={cat.id}
+                            type="button"
+                            onClick={() => setActiveCategory(cat.id)}
+                            className={`px-4 py-2.5 rounded-2xl text-xs font-black uppercase tracking-wider flex items-center gap-2 shrink-0 border-2 transition-all duration-300 ${
+                              isActive
+                                ? 'bg-primary border-primary text-primary-content shadow-md'
+                                : 'bg-base-200/50 border-transparent text-base-content/60 hover:bg-base-200 hover:text-base-content'
+                            }`}
+                          >
+                            <span>{cat.icon}</span>
+                            <span>{cat.name}</span>
+                            <span className={`text-[9px] px-1.5 py-0.5 rounded-md font-black ${
+                              isActive ? 'bg-primary-content/20 text-primary-content' : 'bg-base-content/10 text-base-content/50'
+                            }`}>
+                              {answeredCount}/{totalCount}
+                            </span>
+                            {isCompleted && <CheckCircle2 size={11} className={isActive ? 'text-primary-content' : 'text-success'} />}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {/* Question Cards */}
+                    <div className="space-y-4 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
+                      {getCategoryQuestions(categories.find(c => c.id === activeCategory)?.dbName).map((q) => {
+                        const isAnswered = answers[q._id] !== undefined;
+                        const isYes = answers[q._id] === "Yes";
+                        const isNo = answers[q._id] === "No";
+
+                        return (
+                          <div
+                            key={q._id}
+                            className={`bg-base-200/40 border-2 rounded-[2rem] p-6 transition-all duration-300 hover:border-primary/20 hover:bg-base-200/60 ${
+                              isAnswered ? 'border-base-content/10' : 'border-transparent'
+                            }`}
+                          >
+                            <div className="flex justify-between items-center gap-4 mb-3">
+                              <span className="bg-primary/10 text-primary text-[10px] px-3 py-1 rounded-full font-black uppercase tracking-widest border border-primary/10 shadow-sm">
+                                +{q.points} PTS
+                              </span>
+                              {isAnswered && (
+                                <span className="text-success flex items-center gap-1 text-[10px] font-black uppercase tracking-widest animate-in fade-in zoom-in duration-300">
+                                  <CheckCircle2 size={12} /> Answered
+                                </span>
+                              )}
+                            </div>
+
+                            <p className="text-base-content font-bold text-sm md:text-base mb-5 leading-snug">
+                              {q.question}
+                            </p>
+
+                            <div className="grid grid-cols-2 gap-3">
                               <button
-                                key={option}
                                 type="button"
-                                onClick={() => handleAnswerChange(q._id, option)}
-                                className={`p-4 rounded-2xl text-sm font-bold border-2 transition-all text-left flex items-center justify-between group ${
-                                  answers[q._id] === option 
-                                    ? 'bg-primary border-primary text-primary-content shadow-lg' 
-                                    : 'bg-base-100 border-transparent text-base-content/70 hover:border-primary/30'
+                                onClick={() => handleAnswerChange(q._id, "Yes")}
+                                className={`py-3.5 rounded-2xl text-sm font-black transition-all duration-300 flex items-center justify-center gap-2 border-2 hover:scale-[1.02] active:scale-[0.98] ${
+                                  isYes
+                                    ? 'bg-success border-success text-success-content shadow-lg shadow-success/20'
+                                    : 'bg-base-100 border-base-content/5 text-base-content/70 hover:border-success/30 hover:text-success'
                                 }`}
                               >
-                                {option}
-                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${answers[q._id] === option ? 'border-primary-content' : 'border-base-content/20 group-hover:border-primary/30'}`}>
-                                   {answers[q._id] === option && <CheckCircle2 size={12} />}
-                                </div>
+                                ✓ Yes
                               </button>
-                            ))}
+                              <button
+                                type="button"
+                                onClick={() => handleAnswerChange(q._id, "No")}
+                                className={`py-3.5 rounded-2xl text-sm font-black transition-all duration-300 flex items-center justify-center gap-2 border-2 hover:scale-[1.02] active:scale-[0.98] ${
+                                  isNo
+                                    ? 'bg-neutral border-neutral text-neutral-content shadow-lg'
+                                    : 'bg-base-100 border-base-content/5 text-base-content/70 hover:border-error/30 hover:text-error'
+                                }`}
+                              >
+                                ✗ No
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}

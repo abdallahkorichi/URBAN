@@ -130,16 +130,35 @@ function AllProjects() {
                         <div className="bg-base-200/30 p-6 rounded-3xl border border-base-content/5 max-h-[350px] overflow-y-auto custom-scrollbar">
                           {project.answers && project.answers.length > 0 ? (
                             <ul className="space-y-4">
-                              {project.answers.map((ans, idx) => (
-                                <li key={idx} className="bg-base-100 p-5 rounded-2xl shadow-sm border border-base-content/5 group/ans hover:border-primary/20 transition-all">
-                                  <div className="flex justify-between items-start gap-6">
-                                    <p className="text-sm text-base-content/80 font-bold flex-1 leading-tight"><span className="text-[10px] font-black text-base-content/20 uppercase mr-3">Q{idx + 1}</span> {ans.selectedAnswer}</p>
-                                    <span className={`text-[10px] px-2.5 py-1 rounded-full font-black uppercase tracking-widest shrink-0 shadow-sm ${ans.isCorrect ? 'bg-success/10 text-success' : 'bg-error/10 text-error'}`}>
-                                      {ans.isCorrect ? `+${ans.pointsAwarded} PTS` : 'Flagged'}
-                                    </span>
-                                  </div>
-                                </li>
-                              ))}
+                              {project.answers.map((ans, idx) => {
+                                const questionObj = ans.questionId && typeof ans.questionId === 'object' ? ans.questionId : null;
+                                return (
+                                  <li key={idx} className="bg-base-100 p-5 rounded-2xl shadow-sm border border-base-content/5 group/ans hover:border-primary/20 transition-all space-y-3">
+                                    <div className="flex justify-between items-center">
+                                      <span className="text-[9px] font-black text-primary uppercase tracking-widest">
+                                        {questionObj?.category || `Q${idx + 1}`}
+                                      </span>
+                                    </div>
+                                    <p className="text-sm font-bold text-base-content leading-snug">
+                                      {questionObj ? questionObj.question : `Evaluation Question ${idx + 1}`}
+                                    </p>
+                                    <div className="flex justify-between items-center gap-4 bg-base-200/50 p-3 rounded-xl border border-base-content/5">
+                                      <div className="text-xs font-bold text-base-content/70">
+                                        Architect Answer: <span className={`font-black ${ans.selectedAnswer === 'Yes' ? 'text-success' : 'text-base-content/50'}`}>{ans.selectedAnswer}</span>
+                                      </div>
+                                      {ans.isCorrect ? (
+                                        <span className="bg-success/15 text-success text-[9px] px-2.5 py-1 rounded-full font-black uppercase tracking-widest border border-success/20">
+                                          +{ans.pointsAwarded} PTS
+                                        </span>
+                                      ) : (
+                                        <span className="bg-error/10 text-error text-[9px] px-2.5 py-1 rounded-full font-black uppercase tracking-widest border border-error/10">
+                                          Flagged
+                                        </span>
+                                      )}
+                                    </div>
+                                  </li>
+                                );
+                              })}
                             </ul>
                           ) : (
                             <p className="text-sm text-base-content/30 italic py-10 text-center font-medium">No specialized evaluation data present.</p>

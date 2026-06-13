@@ -83,9 +83,11 @@ export const getMyProjects = async (req, res) => {
         .status(403)
         .json({ message: "Only architects can view their projects" });
     }
-    const projects = await Project.find({ architect: req.user._id }).sort({
-      createdAt: -1,
-    });
+    const projects = await Project.find({ architect: req.user._id })
+      .populate({ path: "answers.questionId", select: "question points category" })
+      .sort({
+        createdAt: -1,
+      });
     res.json(projects);
   } catch (error) {
     res.status(500).json({ message: "Error fetching projects", error });
@@ -99,9 +101,9 @@ export const getAllProjects = async (req, res) => {
         .status(403)
         .json({ message: "Only office users can view all projects" });
     }
-    // Fetch all projects from the database, populating the architect's name and email, and sort them by creation date in descending order
     const projects = await Project.find()
       .populate("architect", "name email")
+      .populate({ path: "answers.questionId", select: "question points category" })
       .sort({ createdAt: -1 });
     res.json(projects);
   } catch (error) {
@@ -122,7 +124,9 @@ export const updateProjectStatus = async (req, res) => {
       return res.status(400).json({ message: "Invalid status value" });
     }
 
-    const project = await Project.findById(req.params.id).populate("architect");
+    const project = await Project.findById(req.params.id)
+      .populate("architect")
+      .populate({ path: "answers.questionId", select: "question points category" });
     // Check if the project exists in the database before updating its status
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
