@@ -6,9 +6,15 @@ function Featers() {
           Platform Capabilities
         </h2>
 
-        <p className="mt-4 text-[#5C4B37] max-w-2xl mx-auto">
-          Built to modernize and standardize urban planning processes in arid
-          and desert environments.
+        <p className="mt-4 text-[#5C4B37] max-w-3xl mx-auto leading-relaxed">
+          The platform is designed to ensure the management and monitoring of
+          urban and architectural planning processes in arid and desert
+          environments, in compliance with the provisions of{" "}
+          <span className="font-semibold text-[#9C7B52]">
+            Executive Decree No. 14-27 of February 1, 2014
+          </span>
+          , applicable to the Southern Provinces of Algeria, as defined by the
+          Decision of March 31, 2014.
         </p>
 
         <div className="mt-16 grid gap-8 md:grid-cols-3">
@@ -17,9 +23,11 @@ function Featers() {
             <h3 className="text-xl font-semibold text-[#3E2F1C]">
               Structured Submissions
             </h3>
-            <p className="mt-4 text-sm text-gray-600">
-              Architects submit projects with organized documentation and
-              detailed compliance information.
+            <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+              Architects submit their projects with organized documentation and
+              detailed information demonstrating their compliance with the
+              requirements and standards adopted within the KOUTHBAN Evaluation
+              System.
             </p>
           </div>
 
@@ -28,9 +36,11 @@ function Featers() {
             <h3 className="text-xl font-semibold text-[#3E2F1C]">
               Review Workflow
             </h3>
-            <p className="mt-4 text-sm text-gray-600">
-              Studies offices efficiently evaluate, approve, or reject
-              submissions with digital tracking.
+            <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+              The platform offers an integrated digital workflow for managing
+              evaluation processes, allowing tracking and review of submissions
+              and informed decision-making, with full traceability across all
+              stages within the "KOUTHBAN" evaluation system.
             </p>
           </div>
 
@@ -39,9 +49,9 @@ function Featers() {
             <h3 className="text-xl font-semibold text-[#3E2F1C]">
               Compliance Tracking
             </h3>
-            <p className="mt-4 text-sm text-gray-600">
-              Maintain regulatory alignment with KHOUTHBAN planning standards
-              and policies.
+            <p className="mt-4 text-sm text-gray-600 leading-relaxed">
+              Tracking project compliance with the approved planning and design
+              standards and requirements under the «KOUTHBAN» evaluation system.
             </p>
           </div>
         </div>

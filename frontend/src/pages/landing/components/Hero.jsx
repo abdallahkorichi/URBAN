@@ -14,9 +14,12 @@ function Hero() {
           </h1>
 
           <p className="mt-6 text-lg text-[#5C4B37] max-w-xl">
-            A structured digital platform connecting architects and studies
-            offices to simplify KOUTHBAN project submission, review, and
-            regulatory compliance.
+            A smart digital system for assessing urban and architectural projects
+            in desert environments, based on criteria derived from the{" "}
+            <span className="font-semibold text-[#9C7B52]">
+              Executive Decree No. 14/27 of February 01, 2014
+            </span>
+            , governing construction in the Southern provinces.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-5">

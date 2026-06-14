@@ -10,7 +10,7 @@ function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-base-content/10">
-                <img src="/assets/logo.png" alt="KOUTHBAN Logo" className="w-full h-full object-cover" />
+                <img src="/assets/KOUTHBAN_logo.png" alt="KOUTHBAN Logo" className="w-full h-full object-cover" />
               </div>
               <span className="text-2xl font-black text-base-content tracking-tight">
                 KOUTHBAN

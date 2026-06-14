@@ -6,7 +6,7 @@ function Navbar() {
       <Link to="/" className="flex items-center gap-3 group">
         <div className="w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-base-content/10 group-hover:border-primary/30 transition-colors">
           <img 
-            src="/assets/logo.png" 
+            src="/assets/KOUTHBAN_logo.png" 
             alt="KOUTHBAN Logo" 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />

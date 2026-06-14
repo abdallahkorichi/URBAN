@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Featers from "./components/Featers";
+import DecreeSection from "./components/DecreeSection";
 import HowItWorks from "./components/HowItWorks";
 import Footer from "./components/Footer";
 
@@ -9,6 +10,7 @@ function Landing() {
     <Navbar/>
     <Hero/>
     <Featers/>
+    <DecreeSection/>
     <HowItWorks/>
     <Footer/>
   </div>;
